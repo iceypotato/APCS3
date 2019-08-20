@@ -12,6 +12,7 @@ public class Helloworld2 {
 	static char r = 'r';
 	static char d = 'd';
 	static char excl = '!';
+	static String test;
 
 	public static void main(String[] args) {
 		System.out.println(h()+e()+l()+l()+o()+" "+w()+o()+r()+l()+d()+excl);
