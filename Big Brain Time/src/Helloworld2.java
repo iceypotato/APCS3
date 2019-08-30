@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //Nicholas Lee
 //8/16/2019
 //This will print Hello world in the most complicated way possible for APCS 3rd period.
@@ -12,9 +14,18 @@ public class Helloworld2 {
 	static char r = 'r';
 	static char d = 'd';
 	static char excl = '!';
+	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		System.out.println(h()+e()+l()+l()+o()+" "+w()+o()+r()+l()+d()+excl);
+		scan.nextLine();
+		System.out.println("/o/");
+		int a = 15; int b = 12;
+		a = a-b;
+		b = a+b;
+		a = a-b;
+		b=a;
+		System.out.println(a + " " + b);
 	}
 	
 	static String h() {
