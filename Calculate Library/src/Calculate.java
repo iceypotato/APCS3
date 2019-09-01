@@ -39,7 +39,7 @@ public class Calculate {
 	}
 	
 	public static String foil(int a, int b, int c, int d, String var) {
-		return a*c + " + " + ( a * d + b * c) + " + " + b*d;
+		return a*c+var+"^2" + " + " + ( a * d + b * c) + var + " + " + b*d;
 	}
 	
 }
