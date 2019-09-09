@@ -25,7 +25,7 @@ public class Calculate {
 	}
 	
 	public static double toRadians(double degs) {
-		return degs * (3.14159/180);
+		return degs * (3.14159/180.);
 	}
 	
 	public static double discriminant(double a, double b, double c) {
@@ -44,5 +44,15 @@ public class Calculate {
 	public static String foil(int a, int b, int c, int d, String var) {
 		return a*c+var+"^2" + " + " + ( a * d + b * c) + var + " + " + b*d;
 	}
+	
+	public static boolean isDivisibleBy(int a, int b) {
+		boolean yesorno = false;
+		if (a % b == 0) {
+			yesorno = true;
+		}
+		
+		return yesorno;
+	}
+
 
 }

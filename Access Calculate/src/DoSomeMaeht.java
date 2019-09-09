@@ -8,6 +8,7 @@ public class DoSomeMaeht {
 		System.out.println(Calculate.toDegrees(3.14159));
 		System.out.println(Calculate.discriminant(1, 4, 1));
 		System.out.println(Calculate.foil(2, 2, 1, 3, "x"));
+		System.out.println(Calculate.isDivisibleBy(3, 3));
 	}
 
 }
