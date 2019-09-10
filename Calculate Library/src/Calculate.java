@@ -53,6 +53,85 @@ public class Calculate {
 		
 		return yesorno;
 	}
-
+	
+	public static double absValue(double num) {
+		if (num < 0) {
+			num = num * -1.;
+		}
+		return num;
+	}
+	
+	public static double max(double a, double b) {
+		double highestVal = 0;
+		if (a > b) {
+			a = highestVal;
+		}
+		else if (b > a) {
+			b = highestVal;
+		}
+		else {
+			System.out.println("They are all equal.");
+		}
+		return highestVal;
+	}
+	
+	public static double max(double a, double b, double c) {
+		double highestVal = 0;
+		if (a > b && a > c) {
+			a = highestVal;
+		}
+		else if (b > a && b > c) {
+			b = highestVal;
+		}
+		else if (c > b & c > a) {
+			c = highestVal;
+		}
+		else {
+			System.out.println("They are all equal.");
+		}
+		return highestVal;
+	}
+	
+	public static int min(int a, int b) {
+		int lowestVal = 0;
+		if (a<b) {
+			a = lowestVal;
+		}
+		else if (b<a) {
+			b = lowestVal;
+		}
+		else {
+			System.out.println("The Values are equal.");
+			a = lowestVal;		
+		}
+		return lowestVal;
+	}
+	
+	public static double round2(double num) {
+		num = (num + 0.005) * 100;
+		num = (int) num;
+		num = num / 100;
+		return num;
+	}
+	
+	public static double exponent(double base, int power) {
+		double factor = base;
+		for (int a = 0; a < power; a++) {
+			base = base * factor;
+		}
+		return base;
+	}
+	
+	public static double factorial(int num) {
+		int number = 1;
+		for (int a = 1; a < num; a++) {
+			number = number * a;
+		}
+		return number;
+	}
+	
+	public static boolean isPrime() {
+		return true;
+	}
 
 }

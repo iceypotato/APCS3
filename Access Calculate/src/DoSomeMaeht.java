@@ -9,6 +9,9 @@ public class DoSomeMaeht {
 		System.out.println(Calculate.discriminant(1, 4, 1));
 		System.out.println(Calculate.foil(2, 2, 1, 3, "x"));
 		System.out.println(Calculate.isDivisibleBy(3, 3));
+		System.out.println(Calculate.round2(10.157));
+		System.out.println(Calculate.exponent(2, 3));
+		System.out.println(Calculate.factorial(4));
 	}
 
 }
