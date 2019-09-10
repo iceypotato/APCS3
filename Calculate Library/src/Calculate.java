@@ -130,7 +130,8 @@ public class Calculate {
 		return number;
 	}
 	
-	public static boolean isPrime() {
+	public static boolean isPrime(int num) {
+		isDivisibleBy(num, 1);
 		return true;
 	}
 
