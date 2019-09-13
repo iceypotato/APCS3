@@ -131,8 +131,26 @@ public class Calculate {
 	}
 	
 	public static boolean isPrime(int num) {
-		isDivisibleBy(num, 1);
-		return true;
+		boolean tempOutput = false;
+		int timesTrue = 0;
+		if (num == 1) {
+			System.out.println("1 is a prime number"); 
+			return true;
+		}
+		for (int i = 1; i <= num; i++) {
+			tempOutput = isDivisibleBy(num, i);
+			if (tempOutput == true) {
+				timesTrue++;
+			}
+		}
+		if (timesTrue == 2) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static int gcf(int num1, int num2) {
+		return -1;
 	}
 
 }
