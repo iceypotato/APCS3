@@ -2,6 +2,8 @@
 public class DoSomeMaeht {
 
 	public static void main(String[] args) {
+		System.out.println(Calculate.max(15, 20));
+		System.out.println();
 		System.out.println(Calculate.square(2));
 		System.out.println();
 		System.out.println(Calculate.average(1, 2, 3));
@@ -24,7 +26,7 @@ public class DoSomeMaeht {
 		System.out.println();
 		System.out.println(Calculate.isPrime(1));
 		System.out.println();
-		System.out.println(Calculate.gcf(20, 10));
+		System.out.println(Calculate.gcf(15, 10));
 	}
 
 }

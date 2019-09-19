@@ -64,45 +64,72 @@ public class Calculate {
 	public static double max(double a, double b) {
 		double highestVal = 0;
 		if (a > b) {
-			a = highestVal;
+			highestVal = a;
 		}
 		else if (b > a) {
-			b = highestVal;
+			highestVal = b;
 		}
 		else {
+			highestVal = a;
 			System.out.println("They are all equal.");
 		}
 		return highestVal;
 	}
-	
 	public static double max(double a, double b, double c) {
 		double highestVal = 0;
 		if (a > b && a > c) {
-			a = highestVal;
+			highestVal = a;
 		}
 		else if (b > a && b > c) {
-			b = highestVal;
+			highestVal = b;
 		}
 		else if (c > b & c > a) {
-			c = highestVal;
+			highestVal = c;
 		}
 		else {
 			System.out.println("They are all equal.");
 		}
 		return highestVal;
 	}
-	
+	public static int max(int a, int b) {
+		int highestVal = 0;
+		if (a > b) {
+			highestVal = a;
+		}
+		else if (b > a) {
+			highestVal = b;
+		}
+		else {
+			highestVal = a;
+			System.out.println("They are all equal.");
+		}
+		return highestVal;
+	}
 	public static int min(int a, int b) {
 		int lowestVal = 0;
 		if (a<b) {
-			a = lowestVal;
+			lowestVal = a;
 		}
 		else if (b<a) {
-			b = lowestVal;
+			lowestVal = b;
 		}
 		else {
 			System.out.println("The Values are equal.");
-			a = lowestVal;		
+			lowestVal = a;		
+		}
+		return lowestVal;
+	}
+	public static double min(double a, double b) {
+		double lowestVal = 0;
+		if (a<b) {
+			lowestVal = a;
+		}
+		else if (b<a) {
+			lowestVal = b;
+		}
+		else {
+			System.out.println("The Values are equal.");
+			lowestVal = a;		
 		}
 		return lowestVal;
 	}
@@ -149,18 +176,16 @@ public class Calculate {
 		return false;
 	}
 	
-	/* if true, test if the other is true
-	 * 
-	 */
+	/* if true, test if the other is true */
 	public static int gcf(int num1, int num2) {
-		int maxNumber = (int)max(num1, num2);
+		int maxNumber = max(num1, num2);
 		int minNumber = min(num1, num2);
 		System.out.println(maxNumber + " " + minNumber);
-
+		
 		for (int i = minNumber;  i > 0; i--) {
 			boolean a = isDivisibleBy(maxNumber, i);
 			boolean b = isDivisibleBy(minNumber, i);
-			if (a == b) {
+			if (a == true && b == true) {
 				return i;
 			}
 		}
