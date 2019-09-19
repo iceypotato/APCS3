@@ -142,6 +142,13 @@ public class Calculate {
 	}
 	
 	public static double exponent(double base, int power) {
+		if (power < 0) {
+			System.out.println("Negative exponents not supported.");
+			return -1;
+		}
+		else if (power == 0) {
+			return 1;
+		}
 		double factor = base;
 		for (int a = 0; a < power; a++) {
 			base = base * factor;
@@ -189,8 +196,17 @@ public class Calculate {
 				return i;
 			}
 		}
-		System.out.println("Something wrong happened.");
-		return (int) -1;
+		System.out.println("The GCF is one.");
+		return 1;
+	}
+	public static double sqrt(double input) {	
+		double calculation = 10.;
+		for (int i = 0; i < 10; i++) {
+			calculation = (1./2.)*(input/calculation + calculation);
+		}
+		calculation = round2(calculation);
+		return calculation;
+		
 	}
 
 }
