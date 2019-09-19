@@ -124,7 +124,7 @@ public class Calculate {
 	
 	public static double factorial(int num) {
 		int number = 1;
-		for (int a = 1; a < num; a++) {
+		for (int a = 1; a <= num; a++) {
 			number = number * a;
 		}
 		return number;
@@ -149,8 +149,23 @@ public class Calculate {
 		return false;
 	}
 	
+	/* if true, test if the other is true
+	 * 
+	 */
 	public static int gcf(int num1, int num2) {
-		return -1;
+		int maxNumber = (int)max(num1, num2);
+		int minNumber = min(num1, num2);
+		System.out.println(maxNumber + " " + minNumber);
+
+		for (int i = minNumber;  i > 0; i--) {
+			boolean a = isDivisibleBy(maxNumber, i);
+			boolean b = isDivisibleBy(minNumber, i);
+			if (a == b) {
+				return i;
+			}
+		}
+		System.out.println("Something wrong happened.");
+		return (int) -1;
 	}
 
 }

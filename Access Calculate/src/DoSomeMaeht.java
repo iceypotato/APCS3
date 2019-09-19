@@ -24,6 +24,7 @@ public class DoSomeMaeht {
 		System.out.println();
 		System.out.println(Calculate.isPrime(1));
 		System.out.println();
+		System.out.println(Calculate.gcf(20, 10));
 	}
 
 }
