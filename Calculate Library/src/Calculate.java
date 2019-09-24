@@ -208,5 +208,29 @@ public class Calculate {
 		return calculation;
 		
 	}
+	public static String quadForm(int a, int b, int c) {
+		if (discriminant(a, b, c) == 0) {
+			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+			return "There is only one root: " + outputPos;
+		}
+		else if (discriminant(a, b, c) < 0) {
+			return "No real roots.";
+		}
+		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
+		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg; 
+	}
+	public static String quadForm(double a, double b, double c) {
+		if (discriminant(a, b, c) == 0) {
+			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+			return "There is only one root: " + outputPos;
+		}
+		else if (discriminant(a, b, c) < 0) {
+			return "No real roots.";
+		}
+		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
+		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg;
+	}
 
 }

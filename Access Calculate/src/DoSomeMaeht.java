@@ -37,6 +37,9 @@ public class DoSomeMaeht {
 		System.out.println(Calculate.gcf(10,3));
 		System.out.println();
 		System.out.println(Calculate.sqrt(2));
+		System.out.println("quadForm");
+		System.out.println(Calculate.quadForm(1, 4, 1));
+		System.out.println(1.414213562 * 1.414213562);
 	}
 
 }
