@@ -223,7 +223,7 @@ public class Calculate {
 	public static String quadForm(double a, double b, double c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
-			return "There is only one root: " + outputPos;
+			return "There is only one root/x-intercept: " + outputPos;
 		}
 		else if (discriminant(a, b, c) < 0) {
 			return "No real roots.";
