@@ -35,7 +35,7 @@ public class Quadratic {
 		}
 		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
 		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
-		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg;
+		return "X-intercepts: " + outputPos + " , " + outputNeg;
 	}
 	public static double square(double x) {
 		return x * x;
@@ -55,10 +55,10 @@ public class Quadratic {
 		String slope = "Stretch Factor: " + a;
 		String discriminant = "Discriminant: " + discriminant(a, b, c);
 		double vertexX = -b / 2*a;
-		String vertex = "Vertex: (" + vertexX + " , " + a*(square(vertexX) + b*vertexX + c);
+		String vertex = "Vertex: (" + vertexX + " , " + a*(square(vertexX) + b*vertexX + c) + ")";
 		String yIntercept = "Y-intercept: " + c;
 		String quadForm = quadForm(a, b, c);
 		
-		return "Description of " + abc + "\n\n" + inverted + "\n" + slope + "\n" + discriminant + "\n" + yIntercept + "\n" + quadForm;
+		return "Description of " + abc + "\n\n" + inverted + "\n" + slope + "\n" + vertex + "\n" + yIntercept + "\n" + quadForm;
 	}
 }
