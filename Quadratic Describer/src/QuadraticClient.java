@@ -1,18 +1,23 @@
 import java.util.Scanner;
 
+
+
 public class QuadraticClient {
 
 	static Scanner scan = new Scanner(System.in);
 	static String exception = "";
 	
 	public static void main(String[] args) {
+		double a = 0.;
+		double b = 0.;
+		double c = 0.;
 		System.out.println("Welcome to the Quadratic Describer");
 		System.out.print("a: "); 
-		double a = scan.nextDouble();
+		a = scan.nextDouble();
 		System.out.print("b: ");
-		double b = scan.nextDouble();
+		b = scan.nextDouble();
 		System.out.print("c: ");
-		double c = scan.nextDouble();
+		c = scan.nextDouble();
 		System.out.println();
 		Quadratic.quadrDescriber(a, b, c);
 	}
