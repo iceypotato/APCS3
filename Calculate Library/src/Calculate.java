@@ -230,7 +230,7 @@ public class Calculate {
 		}
 		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
 		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
-		return "1st root/x-intercept: (" + outputPos + " , 0.0)" + "\n" + "2nd root/x-intercept: (" + outputNeg + " , 0.0)";
+		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg;
 	}
 
 }
