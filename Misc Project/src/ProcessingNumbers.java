@@ -22,8 +22,8 @@ public class ProcessingNumbers {
 			if (input % 2 == 0) {
 				sum += input;
 			}
-			if (input % 2 == 0 > ) {
-				
+			if (input % 2 == 0 && input > maxEven) {
+				maxEven = input;
 			}
 			if (input > max) {
 				max = input;
@@ -34,6 +34,20 @@ public class ProcessingNumbers {
 			System.out.println("Enter next number.");
 			input = scanner.nextInt();
 		}
+		//update one more time
+		if (input % 2 == 0) {
+			sum += input;
+		}
+		if (input % 2 == 0 && input > maxEven) {
+			maxEven = input;
+		}
+		if (input > max) {
+			max = input;
+		}
+		else if (input < min) {
+			min = input;
+		}
+		// ^^^^^
 		System.out.println("Max: " + max);
 		System.out.println("Min: " + min);
 		if (sum == 0) {
@@ -41,8 +55,7 @@ public class ProcessingNumbers {
 		}
 		else {
 			System.out.println("Sum of even numbers: " + sum);
+			System.out.println("Max even number: " + maxEven);
 		}
-
 	}
-
 }
