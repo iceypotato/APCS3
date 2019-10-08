@@ -156,7 +156,7 @@ public class Calculate {
 		return base;
 	}
 	
-	public static double factorial(int num) {
+	public static int factorial(int num) {
 		int number = 1;
 		for (int a = 1; a <= num; a++) {
 			number = number * a;
@@ -220,6 +220,7 @@ public class Calculate {
 		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
 		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg; 
 	}
+	
 	public static String quadForm(double a, double b, double c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
