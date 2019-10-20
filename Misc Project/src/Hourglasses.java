@@ -23,13 +23,14 @@ public class Hourglasses {
 			
 		}
 		System.out.println(printSpace(size/2) + "||");
-		for (int i = size/2;  i >= 0; i--) {
-			if (i <= 1) {
+		for (int i = size/2; i >= 1; i--) {
+			if (i == 1) {
+				
 			}
 			else {
 				System.out.print(printSpace(i-1));
 				System.out.print("/");
-				System.out.print(printColons(2+2*(size/2-i)));
+				System.out.print(printColons(size-2*(i-1)));
 				System.out.println("\\");
 			}	
 		}
@@ -43,14 +44,14 @@ public class Hourglasses {
 	public static String printSpace(int spaces) {
 		String spString = "";
 		for (int i = 0; i < spaces; i++) {
-			spString = spString + " ";
+			spString += " ";
 		}
 		return spString;
 	}
 	public static String printColons(int colons) {
 		String colon = "";
 		for (int i = 0; i < colons; i++) {
-			colon = colon + ":";
+			colon += ":";
 		}
 		return colon;
 	}
