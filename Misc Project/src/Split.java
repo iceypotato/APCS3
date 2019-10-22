@@ -48,10 +48,23 @@ public class Split {
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 
 		 */
-		String[] sandvitch = "hambreadmayobread".split("bread");
+		String sandvitch = ("breadchesebread");
+		String[] sandvitchArray = null;
+		if (sandvitch.indexOf("bread") == -1) {//no bread exists
+			System.out.println("not a freadking sandvitch");
+		}
+		else {
+			
+		}
+		String stinr = "hi my name is ohdaiw";
+		stinr.()
+		
+		
+
+			
+		
 		//System.out.println("Enter ur epic sandvitch:");
 		//String[] sandvitch = scan.nextLine().split("bread");
-		Arrays.toString(sandvitch);
 		
 
 		
