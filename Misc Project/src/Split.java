@@ -48,28 +48,19 @@ public class Split {
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 
 		 */
-		String sandvitch = ("breadchesebread");
-		String[] sandvitchArray = null;
-		if (sandvitch.indexOf("bread") == -1) {//no bread exists
-			System.out.println("not a freadking sandvitch");
+		
+		String sandvitch = "breadcheese";	//cheesebread //cheesebreadcheesebreadbreadhcheese	
+		if (sandvitch.indexOf("bread") == -1) {
+			System.out.println("Not a fraeaking sandvrith");
 		}
 		else {
-			
+			int temp = sandvitch.indexOf("bread");
+			if () {
+				
+			}
 		}
-		String stinr = "hi my name is ohdaiw";
-		stinr.()
 		
 		
-
-			
-		
-		//System.out.println("Enter ur epic sandvitch:");
-		//String[] sandvitch = scan.nextLine().split("bread");
-		
-
-		
-		
-
 		//Your task pt 2:
 
 		/*Write a method that take in a string like
