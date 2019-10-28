@@ -35,7 +35,7 @@ public class Split {
 
 		//Your task Part 1:
 
-		/*Write a method that take in a string like
+		/* Write a method that take in a string like
 
 		 * "applespineapplesbreadlettucetomatobaconmayohambreadcheese"
 
@@ -49,14 +49,31 @@ public class Split {
 
 		 */
 		
-		String sandvitch = "breadcheese";	//cheesebread //cheesebreadcheesebreadbreadhcheese	
-		if (sandvitch.indexOf("bread") == -1) {
-			System.out.println("Not a fraeaking sandvrith");
+		String sandvitch = "mayobreadmayobreadmayobreadbaconbreadbacon";	//cheesebread //cheesebreadcheesebreadbreadhcheese	
+		
+		//bread counter
+		int breads = 0;
+		for (int i = 0 ; i < sandvitch.length()-4; i++) {
+			if (sandvitch.substring(i, i+5).equals("bread")) {
+				breads++;
+				System.out.print(breads + " ");
+			}
+		}
+		System.out.println();
+		if (breads <= 1) {
+			System.out.println("Not a freaking sandvitch");
 		}
 		else {
-			int temp = sandvitch.indexOf("bread");
-			if () {
-				
+			String[] splitSandvitch = sandvitch.split("bread");
+			System.out.println(Arrays.toString(splitSandvitch));
+			if (breads > 2) {
+				for (int i = 0 ; i < splitSandvitch.length - 3 ; i++) {
+					combinedSandvitch += splitSandvitch[1]+splitSandvitch[2]
+				}
+
+			}
+			else {
+				System.out.println(splitSandvitch[1]);
 			}
 		}
 		
@@ -79,4 +96,3 @@ public class Split {
 
 	}
 }
-
