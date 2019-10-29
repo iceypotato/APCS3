@@ -49,7 +49,7 @@ public class Split {
 
 		 */
 		
-		String sandvitch = "mayobreadmayobreadmayobreadbaconbreadbacon";	//cheesebread //cheesebreadcheesebreadbreadhcheese	
+		String sandvitch = "dwadwabreadmayobreadmayobreadbaconbreadegg";	//cheesebread //cheesebreadcheesebreadbreadhcheese	
 		
 		//bread counter
 		int breads = 0;
@@ -67,9 +67,11 @@ public class Split {
 			String[] splitSandvitch = sandvitch.split("bread");
 			System.out.println(Arrays.toString(splitSandvitch));
 			if (breads > 2) {
-				for (int i = 0 ; i < splitSandvitch.length - 3 ; i++) {
-					combinedSandvitch += splitSandvitch[1]+splitSandvitch[2]
+				String combinedSandvitch = "";
+				for (int i = 1 ; i < splitSandvitch.length - 1 ; i++) {
+					combinedSandvitch += splitSandvitch[i];
 				}
+				System.out.println(combinedSandvitch);
 
 			}
 			else {
@@ -93,6 +95,20 @@ public class Split {
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 
 		 */
-
+		whatsTheSandvitch("apples pineapples bread lettuce tomato bacon mayo ham bread cheese");
+	}
+	public static String whatsTheSandvitch(String sandvitch) {
+		int breads = 0;
+		for (int i = 0 ; i < sandvitch.length()-4; i++) {
+			if (sandvitch.substring(i, i+5).equals("bread")) {
+				breads++;
+				System.out.print(breads + " ");
+			}
+		}
+		System.out.println();
+		if (breads <= 1) {
+			System.out.println("Not a freaking sandvitch");
+		}
+		return "";
 	}
 }
