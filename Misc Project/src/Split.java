@@ -49,35 +49,10 @@ public class Split {
 
 		 */
 		
-		String sandvitch = "dwadwabreadmayobreadmayobreadbaconbreadegg";	//cheesebread //cheesebreadcheesebreadbreadhcheese	
+		System.out.println(sandvitech("dwadwabreadmayobreadmayobreadbaconbreadegg"));	//cheesebread //cheesebreadcheesebreadbreadhcheese	
 		
 		//bread counter
-		int breads = 0;
-		for (int i = 0 ; i < sandvitch.length()-4; i++) {
-			if (sandvitch.substring(i, i+5).equals("bread")) {
-				breads++;
-				System.out.print(breads + " ");
-			}
-		}
-		System.out.println();
-		if (breads <= 1) {
-			System.out.println("Not a freaking sandvitch");
-		}
-		else {
-			String[] splitSandvitch = sandvitch.split("bread");
-			System.out.println(Arrays.toString(splitSandvitch));
-			if (breads > 2) {
-				String combinedSandvitch = "";
-				for (int i = 1 ; i < splitSandvitch.length - 1 ; i++) {
-					combinedSandvitch += splitSandvitch[i];
-				}
-				System.out.println(combinedSandvitch);
 
-			}
-			else {
-				System.out.println(splitSandvitch[1]);
-			}
-		}
 		
 		
 		//Your task pt 2:
@@ -95,9 +70,9 @@ public class Split {
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 
 		 */
-		whatsTheSandvitch("apples pineapples bread lettuce tomato bacon mayo ham bread cheese");
+		System.out.println(sandwichWithSpaces("apples pineapples bread lettuce tomato bacon mayo ham bread cheese"));
 	}
-	public static String whatsTheSandvitch(String sandvitch) {
+	public static String sandvitech(String sandvitch) {
 		int breads = 0;
 		for (int i = 0 ; i < sandvitch.length()-4; i++) {
 			if (sandvitch.substring(i, i+5).equals("bread")) {
@@ -106,9 +81,35 @@ public class Split {
 			}
 		}
 		System.out.println();
-		if (breads <= 1) {
-			System.out.println("Not a freaking sandvitch");
+		if (breads >= 1) {
+			String[] splitSandvitch = sandvitch.split("bread");
+			System.out.println(Arrays.toString(splitSandvitch));
+			if (breads > 2) {
+				String combinedSandvitch = "";
+				for (int i = 1 ; i < splitSandvitch.length - 1 ; i++) {
+					combinedSandvitch += splitSandvitch[i];
+				}
+				return combinedSandvitch;
+
+			}
+			else {
+				return splitSandvitch[1];
+			}
 		}
-		return "";
+		else {
+			return "Not a freaking sandwich";
+		}
+		
+	}
+	
+	public static String sandwichWithSpaces(String sandvitch) {
+		String[] sandwitch = sandvitch.split("bread");
+		String insideOfSandwich = sandwitch[1];
+		String[] inside = insideOfSandwich.split(" ");
+		String result = "";
+		for (int i = 0; i < inside.length; i++) {
+			result += inside[i];
+		}
+		return result;
 	}
 }

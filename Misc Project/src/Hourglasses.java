@@ -24,15 +24,12 @@ public class Hourglasses {
 		}
 		System.out.println(printSpace(size/2) + "||");
 		for (int i = size/2; i >= 1; i--) {
-			if (i == 1) {
-				
-			}
-			else {
+			if (i != 1) {
 				System.out.print(printSpace(i-1));
 				System.out.print("/");
 				System.out.print(printColons(size-2*(i-1)));
 				System.out.println("\\");
-			}	
+			}
 		}
 		System.out.print("|");
 		for (int i = 0; i < size; i++) {

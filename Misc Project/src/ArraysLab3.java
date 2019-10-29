@@ -4,7 +4,7 @@
 	 * 5 methods defined below).
 	 */
 
-public class Array3 {
+public class ArraysLab3 {
 
 	/*
 	 * 1) Write a method sum that accepts two arrays of integers arr1 and arr2 and
@@ -14,11 +14,11 @@ public class Array3 {
 	 * 
 	 * public static int[] sum(int[] arr1, int[] arr2) {
 	 */
-		public static int[] sum(int[] arr1, int[] arr2) {
-			int[] sumArray = new int[arr1.length];
-			return arr2;
+	public static int[] sum(int[] arr1, int[] arr2) {
+		int[] sumArray = new int[arr1.length];
+		return arr2;
 			
-		}
+	}
 	
 	/* 
 	 * 2) Write a method append that accepts an array of integers arr of length n
@@ -28,8 +28,11 @@ public class Array3 {
 	 * 
 	 * public static int[] append(int[] arr, int num) {
 	 */
-		
-		
+	
+	public static int[] append(int[] arr, int num) {
+		return null;
+			
+	}
 		
 		
 	/* 3) Write a method remove that accepts an array of integers arr and an integer
