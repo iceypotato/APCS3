@@ -13,11 +13,15 @@ public class ArraysLab3 {
 		int[] sumArr = sum(a1, a2);
 		int appendNum = 200;
 		int[] appendArr = append(a1, appendNum);
-		System.out.println();
+		int removeIdx = 5;
+		int[] removeArr = remove(a2, removeIdx);
+		int sumOfEvens = sumEven(appendArr);
+		rotateRight(a1);
+		System.out.println(Arrays.toString(sumArr));
 		System.out.println(Arrays.toString(appendArr));
-		System.out.println();
-		System.out.println();
-		System.out.println();
+		System.out.println(Arrays.toString(removeArr));
+		System.out.println(sumOfEvens);
+		System.out.println(Arrays.toString(a1));
 	}
 
 	/*
@@ -48,6 +52,9 @@ public class ArraysLab3 {
 	
 	public static int[] append(int[] arr, int num) {
 		int[] appended = new int[arr.length+1];
+		for (int i = 0; i<arr.length; i++) {
+			appended[i] = arr[i];
+		}
 		appended[appended.length-1] = num;
 		return appended;
 			
@@ -57,13 +64,21 @@ public class ArraysLab3 {
 	/* 3) Write a method remove that accepts an array of integers arr and an integer
 	 * idx and returns an array of integers consisting of all of the elements of arr
 	 * except for the element at index idx (thus, the returned array has a length of
-	 * arr.length – 1). You can assume arr has at least two elements.
+	 * arr.length ï¿½ 1). You can assume arr has at least two elements.
 	 * 
 	 * public static int[] remove(int[] arr, int idx) {
 	 */
 	
 	public static int[] remove(int[] arr, int idx) {
-		return arr;
+		int[] removed = new int[arr.length-1];
+		int index = 0;
+		for (int i = 0; i<arr.length; i++) {
+			if (i != idx) {
+				removed[index] = arr[i];
+				index++;
+			}
+		}
+		return removed;
 		
 	}
 	 
@@ -74,14 +89,31 @@ public class ArraysLab3 {
 	 * 
 	 * public static int sumEven(int[] arr) {
 	 */ 
+	public static int sumEven(int[] arr) {
+		int sum = 0;
+		for (int i = 0 ; i<arr.length ; i++) {
+			sum += arr[i];
+		}
+		return sum;
+		
+	}
 	
 	/* 5) Write a method rotateRight that accepts an array of integers arr and does
 	 * not return a value. The rotateRight method moves each element of arr one
 	 * index to the right (element 0 goes to element 1, element 1 goes to element 2,
-	 * …, element n-1 goes to element 0). You can assume arr has at least one
+	 * element n-1 goes to element 0). You can assume arr has at least one
 	 * element.
 	 * 
 	 * public static void rotateRight(int[] arr) {
 	 * 
 	 */
+	
+	private static void rotateRight(int[] arr) {
+		int temp = arr[arr.length-1];
+		for (int i = arr.length-1; i > 0; i--) {
+			arr[i] = arr[i-1];
+		}
+		arr[0] = temp;
+		
+	}
 }
