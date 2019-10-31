@@ -1,0 +1,7 @@
+in the main method 
+{
+declare new Scanner object, input
+call produceAnswer(input)
+
+
+}
