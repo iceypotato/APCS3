@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Hourglasses {
+public class Hourglass {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
