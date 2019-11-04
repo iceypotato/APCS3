@@ -1,17 +1,20 @@
 package fracCalc;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FracCalc {
 
     public static void main(String[] args) {
         // TODO: Read the input from the user and call produceAnswer with an equation
+    	System.out.println("Fractional Calculator, Input Calculation Below");
     	Scanner input = new Scanner(System.in);
 		String calculate = "";
-    	do {
-    		calculate = input.nextLine();
+		calculate = input.nextLine();
+		while (!(calculate.equalsIgnoreCase("quit"))) {
     		System.out.println(produceAnswer(calculate));
-    	} while (!(calculate.equalsIgnoreCase("quit")));
+    		calculate = input.nextLine();
+		}
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -23,15 +26,11 @@ public class FracCalc {
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
-    	if (!input.equalsIgnoreCase("quit")) {
-    		
-    		
-    		return "";
-    	}
-    	
-    	else {
-    		return "Program Terminated.";
-		}
+    	String[] operation = input.split(" ");
+    	String[] mixNum = operation[2].split("_");
+    	String[] fraction = mixNum[1].split("/");
+    	System.out.println(Arrays.toString(fraction));
+    	return "";
         // TODO: Implement this function to produce the solution to the input
     }
 
