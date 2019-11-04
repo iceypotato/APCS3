@@ -29,7 +29,7 @@ public class FracCalc {
     	String[] operation = input.split(" ");
     	String[] mixNum = operation[2].split("_");
     	String[] fraction = mixNum[1].split("/");
-    	System.out.println(Arrays.toString(fraction));
+    	System.out.println("whole: " + mixNum[0] + " numerator: " + fraction);
     	return "";
         // TODO: Implement this function to produce the solution to the input
     }
