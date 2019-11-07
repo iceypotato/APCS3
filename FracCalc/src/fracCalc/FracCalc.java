@@ -88,7 +88,8 @@ public class FracCalc {
     	//Calculation below
     	if (expression[1] == "-") {
     		if (frac1[2] != frac2[2]) {
-    		
+    			frac1[1] *= frac2[2];
+    			frac2[1] *= frac1[2];
     		}
     	}
     	
@@ -96,7 +97,7 @@ public class FracCalc {
     	
     	
         // TODO: Implement this function to produce the solution to the input
-    	return "whole:" + frac2[0] + " numerator:" + frac2[1] + " denominator:" + frac2[2];
+    	return "whole:" +   " numerator:" + " denominator:" ;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
