@@ -33,28 +33,39 @@ public class FracCalc {
     	
     	String[] mixedNum1 = new String[2];
     	String[] fractionPart1 = new String[2];
+    	//Putting things into place.
     	if (expression[0].indexOf("_") != -1) {
-        	mixedNum1 = expression[0].split("_");
-        	fractionPart1 = mixedNum1[1].split("/");
-        	frac1[0] = Integer.parseInt(mixedNum1[0]);
-        	frac1[1] = Integer.parseInt(fractionPart1[0]);
-        	frac1[2] = Integer.parseInt(fractionPart1[1]);
-        	
+    		if (expression[0].indexOf("/") == -1) {
+    			return "Invalid Syntax.";
+    		}
+    		else {
+            	mixedNum1 = expression[0].split("_");
+            	fractionPart1 = mixedNum1[1].split("/");
+            	frac1[0] = Integer.parseInt(mixedNum1[0]);
+            	frac1[1] = Integer.parseInt(fractionPart1[0]);
+            	frac1[2] = Integer.parseInt(fractionPart1[1]);
+    		}
     	}
+
     	else if (expression[0].indexOf("_") == -1) {
-    		fractionPart1 = expression[0].split("/");
-    		frac1[0] = 0;
-    		frac1[1] = Integer.parseInt(fractionPart1[0]);
-    		frac1[2] = Integer.parseInt(fractionPart1[1]);
-    		
+    		if (expression[0].indexOf("/") == -1) {
+        		frac1[0] = Integer.parseInt(expression[0]);
+        		frac1[3] = 1;
+			}
+    		else {
+        		fractionPart1 = expression[0].split("/");
+        		frac1[0] = 0;
+        		frac1[1] = Integer.parseInt(fractionPart1[0]);
+        		frac1[2] = Integer.parseInt(fractionPart1[1]);
+			}
     	}
-    	else {
-    		frac1[0] = Integer.parseInt(expression[0]);
-    	}
-    	
+
     	String[] mixedNum2 = new String[2];
     	String[] fractionPart2 = new String[2];
     	if (expression[2].indexOf("_") != -1) {
+    		if (expression[2].indexOf("/") == -1) {
+        		return "Invalid Syntax";
+			}
         	mixedNum2 = expression[2].split("_");
         	fractionPart2 = mixedNum2[1].split("/");
         	frac2[0] = Integer.parseInt(mixedNum2[0]);
@@ -62,16 +73,26 @@ public class FracCalc {
         	frac2[2] = Integer.parseInt(fractionPart2[1]);
     	}
     	else if (expression[2].indexOf("_") == -1) {
-    		fractionPart2 = expression[2].split("/");
-        	frac2[0] = 0;
-        	frac2[1] = Integer.parseInt(fractionPart2[0]);
-        	frac2[2] = Integer.parseInt(fractionPart2[1]);
-    	}
-    	else {
-    		frac2[0] = Integer.parseInt(expression[2]);
+    		if (expression[2].indexOf("/") == -1) {
+    			frac2[0] = Integer.parseInt(expression[2]);
+        		frac2[2] = 1;
+			} else {
+	    		fractionPart2 = expression[2].split("/");
+	        	frac2[0] = 0;
+	        	frac2[1] = Integer.parseInt(fractionPart2[0]);
+	        	frac2[2] = Integer.parseInt(fractionPart2[1]);
+			}
     	}
     	
-    	//To improper frac VVV
+    	System.out.println(Arrays.toString(frac1) + "\n" + Arrays.toString(frac2));
+    	//Calculation below
+    	if (expression[1] == "-") {
+    		if (frac1[2] != frac2[2]) {
+    		
+    		}
+    	}
+    	
+    	
     	
     	
         // TODO: Implement this function to produce the solution to the input
@@ -79,5 +100,58 @@ public class FracCalc {
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
+	public static int max(int a, int b) {
+		int highestVal = 0;
+		if (a > b) {
+			highestVal = a;
+		}
+		else if (b > a) {
+			highestVal = b;
+		}
+		else {
+			highestVal = a;
+			System.out.println("They are all equal.");
+		}
+		return highestVal;
+	}
+	public static int min(int a, int b) {
+		int lowestVal = 0;
+		if (a<b) {
+			lowestVal = a;
+		}
+		else if (b<a) {
+			lowestVal = b;
+		}
+		else {
+			System.out.println("The Values are equal.");
+			lowestVal = a;		
+		}
+		return lowestVal;
+	}
+	public static boolean isDivisibleBy(int a, int b) {
+		boolean yesorno = false;
+		if (a % b == 0) {
+			yesorno = true;
+		}
+		
+		return yesorno;
+	}
+	public static int gcf(int num1, int num2) {
+		int maxNumber = max(num1, num2);
+		int minNumber = min(num1, num2);
+		System.out.println(maxNumber + " " + minNumber);
+		
+		for (int i = minNumber;  i > 0; i--) {
+			boolean a = isDivisibleBy(maxNumber, i);
+			boolean b = isDivisibleBy(minNumber, i);
+			if (a == true && b == true) {
+				return i;
+			}
+		}
+		System.out.println("The GCF is one.");
+		return 1;
+	}
+    
+    
     
 }
