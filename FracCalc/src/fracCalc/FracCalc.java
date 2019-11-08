@@ -26,6 +26,8 @@ public class FracCalc {
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
+    	int[] ans = new int[3];
+    	String output = "";
     	String[] expression = input.split(" ");
     	System.out.println(Arrays.toString(expression));
     	int[] frac1 = new int[3];
@@ -41,13 +43,13 @@ public class FracCalc {
     		else {
             	mixedNum1 = expression[0].split("_");
             	fractionPart1 = mixedNum1[1].split("/");
-            	frac1[0] = Integer.parseInt(mixedNum1[0]);
-            	frac1[1] = Integer.parseInt(fractionPart1[0]);
+            	frac1[0] = 0;
+            	frac1[1] = Integer.parseInt(fractionPart1[0])
             	frac1[2] = Integer.parseInt(fractionPart1[1]);
     		}
     	}
 
-    	else if (expression[0].indexOf("_") == -1) {
+    	else {
     		if (expression[0].indexOf("/") == -1) {
         		frac1[0] = Integer.parseInt(expression[0]);
         		frac1[3] = 1;
@@ -72,7 +74,7 @@ public class FracCalc {
         	frac2[1] = Integer.parseInt(fractionPart2[0]);
         	frac2[2] = Integer.parseInt(fractionPart2[1]);
     	}
-    	else if (expression[2].indexOf("_") == -1) {
+    	else {
     		if (expression[2].indexOf("/") == -1) {
     			frac2[0] = Integer.parseInt(expression[2]);
         		frac2[2] = 1;
@@ -86,18 +88,25 @@ public class FracCalc {
     	
     	System.out.println(Arrays.toString(frac1) + "\n" + Arrays.toString(frac2));
     	//Calculation below
-    	if (expression[1] == "-") {
+    	if (expression[1] == "-" || expression[1] == "+") {
     		if (frac1[2] != frac2[2]) {
     			frac1[1] *= frac2[2];
     			frac2[1] *= frac1[2];
+    			ans[2] = frac1[2] * frac2[2];
     		}
+    		ans[1] = frac1[1] + frac2[1];
+    	}
+    	if (expression[1] == "*" || expression[1] == "/") {
+    		if (expression[1] == "/") {
+    			
+    		}
+    		ans[1] = frac1[1] * frac2[1];
+    		ans[2] = frac1[2] * frac2[2];
     	}
     	
     	
-    	
-    	
         // TODO: Implement this function to produce the solution to the input
-    	return "whole:" +   " numerator:" + " denominator:" ;
+    	return output;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
