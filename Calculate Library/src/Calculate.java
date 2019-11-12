@@ -38,6 +38,8 @@ public class Calculate {
 	}
 	
 	public static String toMixedNum(int a, int b) {
+		if (a<0 || b<0) 
+			a *= -1;
 		return a / b + "_" + a % b + "/" + b;
 	}
 	
@@ -53,7 +55,7 @@ public class Calculate {
 		
 		return yesorno;
 	}
-	
+
 	public static double absValue(double num) {
 		if (num < 0) {
 			num = num * -1.;

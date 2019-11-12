@@ -27,7 +27,6 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
     	int[] ans = new int[3];
-    	String output = "";
     	String[] expression = input.split(" ");
     	System.out.println(Arrays.toString(expression));
     	int[] frac1 = new int[3];
@@ -43,16 +42,18 @@ public class FracCalc {
     		else {
             	mixedNum1 = expression[0].split("_");
             	fractionPart1 = mixedNum1[1].split("/");
+            	if (Integer.parseInt(mixedNum1[0]) < 0)
+            		fractionPart1[0] = "-"+fractionPart1[0];
             	frac1[0] = 0;
-            	frac1[1] = Integer.parseInt(fractionPart1[0])
+            	frac1[1] = Integer.parseInt(mixedNum1[0]) * Integer.parseInt(fractionPart1[1]) + Integer.parseInt(fractionPart1[0]);
             	frac1[2] = Integer.parseInt(fractionPart1[1]);
     		}
     	}
 
     	else {
     		if (expression[0].indexOf("/") == -1) {
-        		frac1[0] = Integer.parseInt(expression[0]);
-        		frac1[3] = 1;
+        		frac1[1] = Integer.parseInt(expression[0]);
+        		frac1[2] = 1;
 			}
     		else {
         		fractionPart1 = expression[0].split("/");
@@ -70,13 +71,15 @@ public class FracCalc {
 			}
         	mixedNum2 = expression[2].split("_");
         	fractionPart2 = mixedNum2[1].split("/");
-        	frac2[0] = Integer.parseInt(mixedNum2[0]);
-        	frac2[1] = Integer.parseInt(fractionPart2[0]);
+        	if (Integer.parseInt(mixedNum1[0]) < 0)
+        		fractionPart2[0] = "-"+fractionPart2[0];
+        	frac2[0] = 0;
+        	frac2[1] = Integer.parseInt(mixedNum2[0]) * Integer.parseInt(fractionPart2[1]) + Integer.parseInt(fractionPart2[0]);
         	frac2[2] = Integer.parseInt(fractionPart2[1]);
     	}
     	else {
     		if (expression[2].indexOf("/") == -1) {
-    			frac2[0] = Integer.parseInt(expression[2]);
+    			frac2[1] = Integer.parseInt(expression[2]);
         		frac2[2] = 1;
 			} else {
 	    		fractionPart2 = expression[2].split("/");
@@ -87,26 +90,36 @@ public class FracCalc {
     	}
     	
     	System.out.println(Arrays.toString(frac1) + "\n" + Arrays.toString(frac2));
+    	
     	//Calculation below
-    	if (expression[1] == "-" || expression[1] == "+") {
+    	if (expression[1].equals("-") || expression[1].equals("+")) {
     		if (frac1[2] != frac2[2]) {
     			frac1[1] *= frac2[2];
     			frac2[1] *= frac1[2];
     			ans[2] = frac1[2] * frac2[2];
     		}
-    		ans[1] = frac1[1] + frac2[1];
-    	}
-    	if (expression[1] == "*" || expression[1] == "/") {
-    		if (expression[1] == "/") {
-    			
+    		if (expression[1].equals("+")) {
+        		ans[1] = frac1[1] + frac2[1];
+			}
+    		else {
+    			ans[1] = frac1[1] - frac2[1];
     		}
-    		ans[1] = frac1[1] * frac2[1];
-    		ans[2] = frac1[2] * frac2[2];
+
+    	}
+    	if (expression[1].equals("*") || expression[1].equals("/")) {
+    		if (expression[1].equals("/")) {
+    			ans[1] = frac1[1] * frac2[2];
+    			ans[2] = frac1[2] * frac2[1];
+    		}
+    		else {
+        		ans[1] = frac1[1] * frac2[1];
+        		ans[2] = frac1[2] * frac2[2]; 
+    		}
     	}
     	
     	
         // TODO: Implement this function to produce the solution to the input
-    	return output;
+    	return toMixedNum(ans[1], ans[2]);
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
@@ -161,7 +174,19 @@ public class FracCalc {
 		System.out.println("The GCF is one.");
 		return 1;
 	}
-    
+	public static String toMixedNum(int a, int b) {
+		if (a == 0 && b == 0) {
+			return "0";
+		}
+		else if (b < 0) {
+			b *= -1;
+			return -a/b+"_" + a%b + "/" + b;
+		}
+		return a / b + "_" + a % b + "/" + b;
+	}
+	public static int absValue(int num) {
+		return num;
+	}
     
     
 }
