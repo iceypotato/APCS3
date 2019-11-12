@@ -174,19 +174,22 @@ public class FracCalc {
 		System.out.println("The GCF is one.");
 		return 1;
 	}
-	public static String toMixedNum(int a, int b) {
-		if (a == 0 && b == 0) {
-			return "0";
+	public static int abs(int num) {
+    		if (num < 0) {
+			num *= -1;
 		}
-		else if (b < 0) {
-			b *= -1;
-			return -a/b+"_" + a%b + "/" + b;
-		}
-		return a / b + "_" + a % b + "/" + b;
-	}
-	public static int absValue(int num) {
 		return num;
 	}
-    
-    
+	public static String toMixedNum(int a, int b) {
+		if (abs(a) % abs(b)==0)
+			return a / b+"";
+		if (a/b == 0){
+			if (b < 0) {
+				b *= -1;
+				a *= -1;
+			}
+			return a + "/" + b; 
+		}
+		return a / b + "_" + abs(a) % abs(b) + "/" + abs(b);
+	}
 }
