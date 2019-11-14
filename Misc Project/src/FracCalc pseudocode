@@ -1,0 +1,11 @@
+##Pseudocode for multiple operand frac calc
+
+split on spaces on input = expression
+	loop length of expression (look for operands)
+		if / or *
+			set to expression index i-1 and i+1
+		else if + or -
+			do the same above ^^^^
+	
+		loop until mixed numbers are put into the index
+			if 

@@ -26,74 +26,53 @@ public class FracCalcMultipleOperands {
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
-    	String[] expression = input.split(" ");
+    	String[] expression = input.split(" "); //1 - 1/2 - 4/5
     	System.out.println(Arrays.toString(expression));
-    	for 
-    	int[] ans = new int[3];
-
+    	int[] ans = new int[2];
+    	int[] fractions = new int[4];
+		int[] fracIndex = new int[2];
     	//Putting things into place.
-    	if (expression[0].indexOf("_") != -1) {
-    		if (expression[0].indexOf("/") == -1) {
-    			return "Invalid Syntax.";
-    		}
-    		else {
-            	mixedNum1 = expression[0].split("_");
-            	fractionPart1 = mixedNum1[1].split("/");
-            	if (Integer.parseInt(mixedNum1[0]) < 0)
-            		fractionPart1[0] = "-"+fractionPart1[0];
-            	frac1[0] = 0;
-            	frac1[1] = Integer.parseInt(mixedNum1[0]) * Integer.parseInt(fractionPart1[1]) + Integer.parseInt(fractionPart1[0]);
-            	frac1[2] = Integer.parseInt(fractionPart1[1]);
-    		}
-    	}
-    	else {
-    		if (expression[0].indexOf("/") == -1) {
-        		frac1[1] = Integer.parseInt(expression[0]);
-        		frac1[2] = 1;
-			}
-    		else {
-        		fractionPart1 = expression[0].split("/");
-        		frac1[0] = 0;
-        		frac1[1] = Integer.parseInt(fractionPart1[0]);
-        		frac1[2] = Integer.parseInt(fractionPart1[1]);
-			}
-    	}
 
-    	
-    	//Calculation below
-    	if (expression[1].equals("-") || expression[1].equals("+")) {
-    		if (frac1[2] != frac2[2]) {
-    			frac1[1] *= frac2[2];
-    			frac2[1] *= frac1[2];
-    			ans[2] = frac1[2] * frac2[2];
+    	for (int i = 1; i < ans.length; i+=2) {
+    		if (expression[i].equals("*") || expression[i].equals("/")) {
+	    		if (expression[i].equals("/")) {
+	    			ans[1] = fractions[0] * fractions[3];
+	    			ans[2] = fractions[1] * fractions[2];
+	    		}
+	    		else {
+	        		ans[1] = fractions[0] * fractions[2];
+	        		ans[2] = fractions[1] * fractions[3]; 
+	    		}
+    	    	
+    	    	for (int a = 0 ; a < expression.length ; a++) {
+    	    		if (a == i+1) {
+    	    			expression[a] = toMixedNum(ans[0], ans[1]);
+    	    			a++;
+    	    		}
+    	    		expression[a] = expression[a];
+    	    	}
     		}
-    		else {
-    			ans[2] = frac1[2];
-    		}
-    		if (expression[1].equals("+")) {
-        		ans[1] = frac1[1] + frac2[1];
+    	}
+    	for (int i = 1; i < ans.length; i+=2) {
+    		if (expression[i].equals("-") || expression[i].equals("+")) {
+    			if (fractions[1] != fractions[3]) {
+    				fractions[0] *= fractions[4];
+    				fractions[2] *= fractions[1];
+    				ans[2] = fractions[1] * fractions[3];
+    			}
+    			else {
+    				ans[2] = fractions[1];
+    			}
+    			if (expression[1].equals("+")) {
+    				ans[1] = fractions[0] + fractions[2];
+    			}
+    			else {
+    				ans[1] = fractions[0] - fractions[2];
+    			}
 			}
-    		else {
-    			ans[1] = frac1[1] - frac2[1];
-    		}
-    		
-
     	}
-    	if (expression[1].equals("*") || expression[1].equals("/")) {
-    		if (expression[1].equals("/")) {
-    			ans[1] = frac1[1] * frac2[2];
-    			ans[2] = frac1[2] * frac2[1];
-    		}
-    		else {
-        		ans[1] = frac1[1] * frac2[1];
-        		ans[2] = frac1[2] * frac2[2]; 
-    		}
-    	}
-    	
-    	
-        // TODO: Implement this function to produce the solution to the input
-    	return toMixedNum(ans[1], ans[2]);
     }
+        // TODO: Implement this function to produce the solution to the input
 
     // TODO: Fill in the space below with any helper methods that you think you will need
 	public static int max(int a, int b) {
@@ -152,6 +131,11 @@ public class FracCalcMultipleOperands {
 			num *= -1;
 		}
 		return num;
+	}
+	public static int[] toImproperFrac(String mixNum1,int[] fractions) {
+		String[] mixedNum = new String[2];
+		String[] fractionPortion = new String[2];
+		return fractions;
 	}
 	public static String toMixedNum(int a, int b) {
 		if (abs(a) % abs(b)==0)
