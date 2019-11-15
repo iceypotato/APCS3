@@ -26,105 +26,76 @@ public class FracCalc {
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
-    	
-    	String[] expression = input.split(" ");
+    	String[] expression = input.split(" "); // 1 - 1/2 * 4/5
     	System.out.println(Arrays.toString(expression));
-    	int[] frac1 = new int[3];
-    	int[] frac2 = new int[3];
-    	int[] ans = new int[3];
-    	String[] mixedNum1 = new String[2];
-    	String[] fractionPart1 = new String[2];
+    	int[] ans = new int[2];
+    	int[] frac1 = new int[2];
+    	int[] frac2 = new int[2];
+
     	//Putting things into place.
-    	if (expression[0].indexOf("_") != -1) {
-    		if (expression[0].indexOf("/") == -1) {
-    			return "Invalid Syntax.";
-    		}
-    		else {
-            	mixedNum1 = expression[0].split("_");
-            	fractionPart1 = mixedNum1[1].split("/");
-            	if (Integer.parseInt(mixedNum1[0]) < 0)
-            		fractionPart1[0] = "-"+fractionPart1[0];
-            	frac1[0] = 0;
-            	frac1[1] = Integer.parseInt(mixedNum1[0]) * Integer.parseInt(fractionPart1[1]) + Integer.parseInt(fractionPart1[0]);
-            	frac1[2] = Integer.parseInt(fractionPart1[1]);
-    		}
-    	}
 
-    	else {
-    		if (expression[0].indexOf("/") == -1) {
-        		frac1[1] = Integer.parseInt(expression[0]);
-        		frac1[2] = 1;
-			}
-    		else {
-        		fractionPart1 = expression[0].split("/");
-        		frac1[0] = 0;
-        		frac1[1] = Integer.parseInt(fractionPart1[0]);
-        		frac1[2] = Integer.parseInt(fractionPart1[1]);
-			}
-    	}
-
-    	String[] mixedNum2 = new String[2];
-    	String[] fractionPart2 = new String[2];
-    	if (expression[2].indexOf("_") != -1) {
-    		if (expression[2].indexOf("/") == -1) {
-        		return "Invalid Syntax";
-			}
-        	mixedNum2 = expression[2].split("_");
-        	fractionPart2 = mixedNum2[1].split("/");
-        	if (Integer.parseInt(mixedNum2[0]) < 0)
-        		fractionPart2[0] = "-"+fractionPart2[0];
-        	frac2[0] = 0;
-        	frac2[1] = Integer.parseInt(mixedNum2[0]) * Integer.parseInt(fractionPart2[1]) + Integer.parseInt(fractionPart2[0]);
-        	frac2[2] = Integer.parseInt(fractionPart2[1]);
-    	}
-    	else {
-    		if (expression[2].indexOf("/") == -1) {
-    			frac2[1] = Integer.parseInt(expression[2]);
-        		frac2[2] = 1;
-			} else {
-	    		fractionPart2 = expression[2].split("/");
-	        	frac2[0] = 0;
-	        	frac2[1] = Integer.parseInt(fractionPart2[0]);
-	        	frac2[2] = Integer.parseInt(fractionPart2[1]);
-			}
-    	}
-    	
-    	System.out.println(Arrays.toString(frac1) + "\n" + Arrays.toString(frac2));
-    	
-    	//Calculation below
-    	if (expression[1].equals("-") || expression[1].equals("+")) {
-    		if (frac1[2] != frac2[2]) {
-    			frac1[1] *= frac2[2];
-    			frac2[1] *= frac1[2];
-    			ans[2] = frac1[2] * frac2[2];
-    		}
-    		else {
-    			ans[2] = frac1[2];
-    		}
-    		if (expression[1].equals("+")) {
-        		ans[1] = frac1[1] + frac2[1];
-			}
-    		else {
-    			ans[1] = frac1[1] - frac2[1];
+    	for (int i = 1; i < expression.length; i+=2) {
+        	String[] newExpression = new String[expression.length-2];
+    		if (expression[i].equals("*") || expression[i].equals("/")) {
+    			toImproperFrac(expression[i-1], frac1);
+    			toImproperFrac(expression[i+1], frac2);
+    			if (expression[1].equals("/")) {
+    				ans[0] = frac1[0] * frac2[1];
+    				ans[1] = frac1[1] * frac2[0];
+    			}
+    			else {
+    				ans[0] = frac1[0] * frac2[0];
+    				ans[1] = frac1[1] * frac2[1]; 
+    			}
+        		for (int a = 0 ; a < newExpression.length ; a++) {
+        			if (a == i-1) {
+        				newExpression[a] = toMixedNum(ans[0], ans[1]);
+        				a++;
+        			}
+        			else {
+        				newExpression[a] = expression[a];
+					}
+        			
+        		}
+        		expression = newExpression;
     		}
     		
-
     	}
-    	if (expression[1].equals("*") || expression[1].equals("/")) {
-    		if (expression[1].equals("/")) {
-    			ans[1] = frac1[1] * frac2[2];
-    			ans[2] = frac1[2] * frac2[1];
-    		}
-    		else {
-        		ans[1] = frac1[1] * frac2[1];
-        		ans[2] = frac1[2] * frac2[2]; 
+    	for (int i = 1; i < expression.length; i+=2) {
+        	String[] newExpression = new String[expression.length-2];
+    		if (expression[i].equals("-") || expression[i].equals("+")) {
+        		toImproperFrac(expression[i-1], frac1);
+        		toImproperFrac(expression[i+1], frac2);
+    			if (frac1[1] != frac2[1]) {
+    				frac1[0] *= frac2[1];
+    				frac2[0] *= frac1[1];
+    				ans[1] = frac1[1] * frac2[1];
+    			}
+    			else {
+    				ans[1] = frac1[1];
+    			}
+    			if (expression[1].equals("+")) {
+    				ans[0] = frac1[0] + frac2[0];
+    			}
+    			else {
+    				ans[0] = frac1[0] - frac2[0];
+    			}
+        		for (int a = 0 ; a < newExpression.length ; a++) {
+        			if (a == i-1) {
+        				newExpression[a] = toMixedNum(ans[0], ans[1]);
+        				a++;
+        			}
+        			else {
+        				newExpression[a] = expression[a];
+					}
+        			
+        		}
+        		expression = newExpression;
     		}
     	}
-    	
-    	
-        // TODO: Implement this function to produce the solution to the input
-    	return toMixedNum(ans[1], ans[2]);
+    	return expression[0];
     }
+        // TODO: Implement this function to produce the solution to the input
 
     // TODO: Fill in the space below with any helper methods that you think you will need
 	public static int max(int a, int b) {
@@ -183,6 +154,36 @@ public class FracCalc {
 			num *= -1;
 		}
 		return num;
+	}
+	public static int[] toImproperFrac(String mixNumRaw, int[] fractions) {
+		String[] mixedNum = new String[2];
+		String[] fractionPortion = new String[2];
+    	if (mixNumRaw.indexOf("_") != -1) {
+    		if (mixNumRaw.indexOf("/") == -1) {
+    			//do nothing
+    		}
+    		else {
+            	mixedNum = mixNumRaw.split("_");
+            	fractionPortion = mixedNum[1].split("/");
+            	if (Integer.parseInt(mixedNum[0]) < 0)
+            		fractionPortion[0] = "-"+fractionPortion[0];
+            	fractions[0] = Integer.parseInt(mixedNum[0]) * Integer.parseInt(fractionPortion[1]) + Integer.parseInt(fractionPortion[0]);
+            	fractions[1] = Integer.parseInt(fractionPortion[1]);
+    		}
+    	}
+
+    	else {
+    		if (mixNumRaw.indexOf("/") == -1) {
+        		fractions[0] = Integer.parseInt(mixNumRaw);
+        		fractions[1] = 1;
+			}
+    		else {
+        		fractionPortion = mixNumRaw.split("/");
+        		fractions[0] = Integer.parseInt(fractionPortion[0]);
+        		fractions[1] = Integer.parseInt(fractionPortion[1]);
+			}
+    	}
+		return fractions;
 	}
 	public static String toMixedNum(int a, int b) {
 		if (abs(a) % abs(b)==0)
