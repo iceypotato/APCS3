@@ -27,72 +27,78 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
     	String[] expression = input.split(" "); // 1 - 1/2 * 4/5
+    	String[] expressionParts = null;
     	System.out.println(Arrays.toString(expression));
     	int[] ans = new int[2];
     	int[] frac1 = new int[2];
     	int[] frac2 = new int[2];
-
+    	
     	//Putting things into place.
+			for (int i = 1; i < expression.length; i+=2) {
+				String[] newExpression = new String[expression.length-2];
+				if (expression[i].equals("*") || expression[i].equals("/")) {
+					toImproperFrac(expression[i-1], frac1);
+					toImproperFrac(expression[i+1], frac2);
+					if (expression[i].equals("/")) {
+						ans[0] = frac1[0] * frac2[1];
+						ans[1] = frac1[1] * frac2[0];
+					}
+					else if (expression[i].equals("*")){
+						ans[0] = frac1[0] * frac2[0];
+						ans[1] = frac1[1] * frac2[1]; 
+					}
+					int tempAns1 = ans[0],tempAns2 = ans[1];
+					ans[0] /= gcf(tempAns1, tempAns2);
+					ans[1] /= gcf(tempAns1, tempAns2);
+					for (int a = 0 ; a < newExpression.length ; a++) {
+						if (a == i-1) {
+							newExpression[j] = toMixedNum(ans[0], ans[1]);
+							a+=2;
+						}
+						else {
+							newExpression[j] = expression[a];
+						}
 
-    	for (int i = 1; i < expression.length; i+=2) {
-        	String[] newExpression = new String[expression.length-2];
-    		if (expression[i].equals("*") || expression[i].equals("/")) {
-    			toImproperFrac(expression[i-1], frac1);
-    			toImproperFrac(expression[i+1], frac2);
-    			if (expression[1].equals("/")) {
-    				ans[0] = frac1[0] * frac2[1];
-    				ans[1] = frac1[1] * frac2[0];
-    			}
-    			else {
-    				ans[0] = frac1[0] * frac2[0];
-    				ans[1] = frac1[1] * frac2[1]; 
-    			}
-        		for (int a = 0 ; a < newExpression.length ; a++) {
-        			if (a == i-1) {
-        				newExpression[a] = toMixedNum(ans[0], ans[1]);
-        				a++;
-        			}
-        			else {
-        				newExpression[a] = expression[a];
 					}
-        			
-        		}
-        		expression = newExpression;
-    		}
-    		
-    	}
-    	for (int i = 1; i < expression.length; i+=2) {
-        	String[] newExpression = new String[expression.length-2];
-    		if (expression[i].equals("-") || expression[i].equals("+")) {
-        		toImproperFrac(expression[i-1], frac1);
-        		toImproperFrac(expression[i+1], frac2);
-    			if (frac1[1] != frac2[1]) {
-    				frac1[0] *= frac2[1];
-    				frac2[0] *= frac1[1];
-    				ans[1] = frac1[1] * frac2[1];
-    			}
-    			else {
-    				ans[1] = frac1[1];
-    			}
-    			if (expression[1].equals("+")) {
-    				ans[0] = frac1[0] + frac2[0];
-    			}
-    			else {
-    				ans[0] = frac1[0] - frac2[0];
-    			}
-        		for (int a = 0 ; a < newExpression.length ; a++) {
-        			if (a == i-1) {
-        				newExpression[a] = toMixedNum(ans[0], ans[1]);
-        				a++;
-        			}
-        			else {
-        				newExpression[a] = expression[a];
+					expression = newExpression;
+				}
+
+			}
+			for (int i = 1; i < expression.length; i+=2) {
+				String[] newExpression = new String[expression.length-2];
+				if (expression[i].equals("-") || expression[i].equals("+")) {
+					toImproperFrac(expression[i-1], frac1);
+					toImproperFrac(expression[i+1], frac2);
+					if (frac1[1] != frac2[1]) {
+						frac1[0] *= frac2[1];
+						frac2[0] *= frac1[1];
+						ans[1] = frac1[1] * frac2[1];
 					}
-        			
-        		}
-        		expression = newExpression;
-    		}
-    	}
+					else {
+						ans[1] = frac1[1];
+					}
+					if (expression[i].equals("+")) {
+						ans[0] = frac1[0] + frac2[0];
+					}
+					else {
+						ans[0] = frac1[0] - frac2[0];
+					}
+					int tempAns1 = ans[0],tempAns2 = ans[1];
+					ans[0] /= gcf(tempAns1, tempAns2);
+					ans[1] /= gcf(tempAns1, tempAns2);
+					for (int a = 0 ; a < newExpression.length ; a++) {
+						if (a == i-1) {
+							newExpression[a] = toMixedNum(ans[0], ans[1]);
+							a+=2;
+						}
+						else {
+							newExpression[a] = expression[a];
+						}
+
+					}
+					expression = newExpression;
+				}
+			}
     	return expression[0];
     }
         // TODO: Implement this function to produce the solution to the input
