@@ -26,7 +26,7 @@ public class FracCalc {
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
-    	String[] expression = input.split(" "); // 1 - 1/2 * 4/5
+    	String[] expression = input.split(" "); // 1 * 1/2 - 4/5
     	String[] expressionParts = null;
     	System.out.println(Arrays.toString(expression));
     	int[] ans = new int[2];
@@ -50,13 +50,16 @@ public class FracCalc {
 					int tempAns1 = ans[0],tempAns2 = ans[1];
 					ans[0] /= gcf(tempAns1, tempAns2);
 					ans[1] /= gcf(tempAns1, tempAns2);
-					for (int a = 0 ; a < newExpression.length ; a++) {
+					int j = 0;
+					for (int a = 0 ; a < expression.length ; a++) {
 						if (a == i-1) {
 							newExpression[j] = toMixedNum(ans[0], ans[1]);
 							a+=2;
+							j++;
 						}
 						else {
 							newExpression[j] = expression[a];
+							j++;
 						}
 
 					}
@@ -86,13 +89,16 @@ public class FracCalc {
 					int tempAns1 = ans[0],tempAns2 = ans[1];
 					ans[0] /= gcf(tempAns1, tempAns2);
 					ans[1] /= gcf(tempAns1, tempAns2);
-					for (int a = 0 ; a < newExpression.length ; a++) {
+					int j = 0;
+					for (int a = 0 ; a < expression.length ; a++) {
 						if (a == i-1) {
-							newExpression[a] = toMixedNum(ans[0], ans[1]);
+							newExpression[j] = toMixedNum(ans[0], ans[1]);
 							a+=2;
+							j++;
 						}
 						else {
-							newExpression[a] = expression[a];
+							newExpression[j] = expression[a];
+							j++;
 						}
 
 					}
