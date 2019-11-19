@@ -90,6 +90,7 @@ public class Calculate {
 		}
 		else {
 			System.out.println("They are all equal.");
+			highestVal = a;
 		}
 		return highestVal;
 	}
@@ -102,8 +103,8 @@ public class Calculate {
 			highestVal = b;
 		}
 		else {
-			highestVal = a;
 			System.out.println("They are all equal.");
+			highestVal = a;
 		}
 		return highestVal;
 	}
@@ -117,7 +118,7 @@ public class Calculate {
 		}
 		else {
 			System.out.println("The Values are equal.");
-			lowestVal = a;		
+			lowestVal = a;
 		}
 		return lowestVal;
 	}
@@ -137,9 +138,17 @@ public class Calculate {
 	}
 	
 	public static double round2(double num) {
+		boolean wasNegative = false;
+		if (num < 0) {
+			num *= -1;
+			wasNegative = true;
+		}
 		num = (num + 0.005) * 100;
 		num = (int) num;
 		num = num / 100;
+		if (wasNegative == true) {
+			return num * -1;	
+		}
 		return num;
 	}
 	
@@ -148,12 +157,16 @@ public class Calculate {
 			System.out.println("Negative exponents not supported.");
 			return -1;
 		}
+		 
 		else if (power == 0) {
 			return 1;
 		}
+		if (base <= 0) {
+			return -1;
+		}
 		double factor = base;
-		for (int a = 0; a < power; a++) {
-			base = base * factor;
+		for (int a = 1; a < power; a++) {
+			base *= factor;
 		}
 		return base;
 	}
@@ -189,8 +202,11 @@ public class Calculate {
 	public static int gcf(int num1, int num2) {
 		int maxNumber = max(num1, num2);
 		int minNumber = min(num1, num2);
+		if (minNumber == 0) 
+			return maxNumber;
+		if (minNumber < 0)
+			minNumber *= -1;
 		System.out.println(maxNumber + " " + minNumber);
-		
 		for (int i = minNumber;  i > 0; i--) {
 			boolean a = isDivisibleBy(maxNumber, i);
 			boolean b = isDivisibleBy(minNumber, i);
@@ -198,9 +214,9 @@ public class Calculate {
 				return i;
 			}
 		}
-		System.out.println("The GCF is one.");
 		return 1;
 	}
+	
 	public static double sqrt(double input) {	
 		double calculation = 10.;
 		for (int i = 0; i < 10; i++) {

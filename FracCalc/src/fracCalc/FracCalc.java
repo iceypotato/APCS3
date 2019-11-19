@@ -34,7 +34,7 @@ public class FracCalc {
     	int[] frac2 = new int[2];
     	
     	//Putting things into place.
-			for (int i = 1; i < expression.length; i+=2) {
+ 			for (int i = 1; i < expression.length; i+=2) {
 				String[] newExpression = new String[expression.length-2];
 				if (expression[i].equals("*") || expression[i].equals("/")) {
 					toImproperFrac(expression[i-1], frac1);
@@ -149,8 +149,9 @@ public class FracCalc {
 	public static int gcf(int num1, int num2) {
 		int maxNumber = max(num1, num2);
 		int minNumber = min(num1, num2);
+		if (minNumber < 0)
+			minNumber *= -1;
 		System.out.println(maxNumber + " " + minNumber);
-		
 		for (int i = minNumber;  i > 0; i--) {
 			boolean a = isDivisibleBy(maxNumber, i);
 			boolean b = isDivisibleBy(minNumber, i);
@@ -198,6 +199,7 @@ public class FracCalc {
 		return fractions;
 	}
 	public static String toMixedNum(int a, int b) {
+		int temp1 = 0, temp2 = 0;
 		if (abs(a) % abs(b)==0)
 			return a / b+"";
 		if (a/b == 0) {
