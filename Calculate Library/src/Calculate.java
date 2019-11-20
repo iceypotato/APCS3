@@ -154,10 +154,11 @@ public class Calculate {
 	
 	public static double exponent(double base, int power) {
 		if (power < 0) {
-			System.out.println("Negative exponents not supported.");
-			return -1;
+			throw new IllegalArgumentException("Negative Exponent");
 		}
-		 
+		if (power == 0 && base == 0) {
+			throw new IllegalArgumentException("Both base and exponent cannot be 0");
+		}
 		else if (power == 0) {
 			return 1;
 		}
@@ -172,6 +173,8 @@ public class Calculate {
 	}
 	
 	public static int factorial(int num) {
+		if (num < 0)
+			throw new IllegalArgumentException("The input cannot be less than 0");
 		int number = 1;
 		for (int a = 1; a <= num; a++) {
 			number = number * a;
@@ -218,6 +221,12 @@ public class Calculate {
 	}
 	
 	public static double sqrt(double input) {	
+		if (input < 0) {
+			throw new IllegalArgumentException("Negative input");
+		}
+		if (input == 0) {
+			return 0;
+		}
 		double calculation = 10.;
 		for (int i = 0; i < 10; i++) {
 			calculation = (1./2.)*(input/calculation + calculation);
@@ -229,27 +238,27 @@ public class Calculate {
 	public static String quadForm(int a, int b, int c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
-			return "There is only one root: " + outputPos;
+			return outputPos+""; //ONE REAL ROOT
 		}
 		else if (discriminant(a, b, c) < 0) {
 			return "No real roots.";
 		}
 		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
 		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
-		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg; 
+		return outputNeg + " and " + outputPos;
 	}
 	
 	public static String quadForm(double a, double b, double c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
-			return "There is only one root/x-intercept: " + outputPos;
+			return outputPos+""; //ONE REAL ROOT
 		}
 		else if (discriminant(a, b, c) < 0) {
 			return "No real roots.";
 		}
 		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
 		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
-		return "Positive root: " + outputPos + "\n" + "Negative root: " + outputNeg;
+		return outputNeg + " and " + outputPos;
 	}
 
 }
