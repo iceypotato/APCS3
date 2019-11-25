@@ -36,8 +36,16 @@ public class FracCalc3 {
 		int[] frac2 = new int[2];
 
 		// Putting things into place.
-		for (int a ; a < expression.length; a++) {
-			for (int i = 1; i < expression.length; i += 0) { //Loop scans for multiplication and addition
+		for (int p = 0 ; p < expression.length; p++) {
+			int i = 0;
+			int closeParenthesies = 0;
+			if (expression[p].indexOf("(") != -1) {
+				i = p+1;
+			}
+			else if (expression[p].indexOf(")") != -1) {
+				closeParenthesies = p;
+			}
+			while (i < expression.length) { //Loop scans for multiplication and addition
 				String[] newExpression = new String[expression.length - 2];
 				if (expression[i].equals("*") || expression[i].equals("/")) {
 					toImproperFrac(expression[i - 1], frac1);

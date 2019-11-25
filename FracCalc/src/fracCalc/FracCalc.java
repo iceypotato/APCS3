@@ -29,7 +29,11 @@ public class FracCalc {
 	// calculated
 	// e.g. return ==> "1_1/4"
 	public static String produceAnswer(String input) {
+		if (input.indexOf(" ") == -1) {
+			return "Invalid Syntax.";
+		}
 		String[] expression = input.split(" "); // 5_3/4 - -6_8/8 - 5_3/4
+		
 		String[] expressionParts = null;
 		int[] ans = new int[2];
 		int[] frac1 = new int[2];
@@ -41,6 +45,9 @@ public class FracCalc {
 			if (expression[i].equals("*") || expression[i].equals("/")) {
 				toImproperFrac(expression[i - 1], frac1);
 				toImproperFrac(expression[i + 1], frac2);
+				if (frac1 == null || frac2 == null) {
+					return "Invalid Syntax.";
+				}
 				if (expression[i].equals("/")) {
 					ans[0] = frac1[0] * frac2[1];
 					ans[1] = frac1[1] * frac2[0];
@@ -65,8 +72,11 @@ public class FracCalc {
 				}
 				expression = newExpression;
 			}
-			else {
+			else if (expression[i].equals("+") || expression[i].equals("-")) {
 				i += 2;
+			}
+			else {
+				return "Invalid Syntax.";
 			}
 
 		}
@@ -75,6 +85,9 @@ public class FracCalc {
 			if (expression[i].equals("-") || expression[i].equals("+")) {
 				toImproperFrac(expression[i - 1], frac1);
 				toImproperFrac(expression[i + 1], frac2);
+				if (frac1 == null || frac2 == null) {
+					return "Invalid Syntax.";
+				}
 				if (frac1[1] != frac2[1]) {
 					frac1[0] *= frac2[1];
 					frac2[0] *= frac1[1];
@@ -105,10 +118,12 @@ public class FracCalc {
 
 				}
 				expression = newExpression;
-				i = 1;
+			}
+			else if (expression[i].equals("*") || expression[i].equals("/")) {
+				i += 2;
 			}
 			else {
-				i += 2;
+				return "Invalid Syntax.";
 			}
 		}
 		return expression[0];
@@ -125,7 +140,6 @@ public class FracCalc {
 			highestVal = b;
 		} else {
 			highestVal = a;
-			System.out.println("They are all equal.");
 		}
 		return highestVal;
 	}
@@ -137,7 +151,6 @@ public class FracCalc {
 		} else if (b < a) {
 			lowestVal = b;
 		} else {
-			System.out.println("The Values are equal.");
 			lowestVal = a;
 		}
 		return lowestVal;
@@ -160,7 +173,6 @@ public class FracCalc {
 		int minNumber = min(num1, num2);
 		if (minNumber < 0)
 			minNumber *= -1;
-		System.out.println(maxNumber + " " + minNumber);
 		for (int i = minNumber; i > 0; i--) {
 			boolean a = isDivisibleBy(maxNumber, i);
 			boolean b = isDivisibleBy(minNumber, i);
@@ -168,7 +180,6 @@ public class FracCalc {
 				return i;
 			}
 		}
-		System.out.println("The GCF is one.");
 		return 1;
 	}
 
@@ -184,7 +195,7 @@ public class FracCalc {
 		String[] fractionPortion = new String[2];
 		if (mixNumRaw.indexOf("_") != -1) {
 			if (mixNumRaw.indexOf("/") == -1) {
-				// do nothing
+				return null;
 			} else {
 				mixedNum = mixNumRaw.split("_");
 				fractionPortion = mixedNum[1].split("/");
