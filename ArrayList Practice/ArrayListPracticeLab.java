@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.xml.soap.Text;
+
 public class ArrayListPracticeLab 
 {
 	// printMe is just a quick tool to check your work.  Use it in conjunction with the test cases in main
@@ -66,12 +68,15 @@ public class ArrayListPracticeLab
 	 *  The returned list should contain {"be", "to", "not", "or", "be", "to", "hamlet"}
 	 */
 	public static ArrayList<String> swapPairs(ArrayList<String> input) {
-		for (int i = 0 ; i < input.size()/2 ; i++) {
+		for (int i = 0 ; i < input.size(); i+=2) {
 			String temp1 = input.get(i);
-			String temp2 = input.get(i + 2);
-			input.add(0,temp2);
-			input.add(e)
+			String temp2 = input.get(i + 1);
+			input.remove(i);
+			input.remove(i);
+			input.add(i,temp1);
+			input.add(i,temp2);
 		}
+		return input;
 	}
 	
 	
@@ -86,7 +91,19 @@ public class ArrayListPracticeLab
 	 * any Strings of even length.
 	 * removeEvenLength should not change the input ArrayList.
 	 */
-	
+	public static ArrayList<String> removeEvenLength(ArrayList<String> input) {
+		
+		for (int i = 0; i<input.size() ; i+=0) {
+			if (input.get(i).length() % 2 == 0) {
+				input.remove(i);
+			}
+			else {
+				i++;
+			}
+		}
+		
+		return input;
+	}
 	
 	
 	
@@ -101,7 +118,11 @@ public class ArrayListPracticeLab
 	 * is called, it should contain the values {"how", "how", "are", "are", "you?", "you?"} 
 	 * after the method finishes executing.
 	 */
-	
+	public static void doubleList(ArrayList<String> string) {
+		for (int i = 0; i < string.size() ; i+=2) {
+			string.add(i,string.get(i));
+		}
+	}
 	
 	
 	
@@ -127,6 +148,9 @@ public class ArrayListPracticeLab
 		String[] test_max_1 = {"to", "be", "or", "not", "to", "be", "hamlet"};  
 		String[] test_max_2 = {"Only one really long string"};
 		String[] test_max_3 = {};
+		System.out.println(maxLength(convertArrayToList(test_max_1)));
+		System.out.println(maxLength(convertArrayToList(test_max_2)));
+		System.out.println(maxLength(convertArrayToList(test_max_3)));
 		
 		//printMe( maxLength( convertArrayToList(test_max_1) ) );
 		
@@ -144,10 +168,11 @@ public class ArrayListPracticeLab
 		String[] test_swap_2 = {"I", "love", "programming!"};
 		String[] test_swap_3 = {"don't move me"};
 		String[] test_swap_4 = {};
-
+		printMe(swapPairs(convertArrayToList(test_swap_1)));
+		printMe(swapPairs(convertArrayToList(test_swap_2)));
+		printMe(swapPairs(convertArrayToList(test_swap_3)));
+		printMe(swapPairs(convertArrayToList(test_swap_4)));
 		
-		
-
 		// To test your removeEvenLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your removeEvenLength method.  
 		// Expected output:  
