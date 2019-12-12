@@ -68,7 +68,7 @@ public class ArrayListPracticeLab
 	 *  The returned list should contain {"be", "to", "not", "or", "be", "to", "hamlet"}
 	 */
 	public static ArrayList<String> swapPairs(ArrayList<String> input) {
-		for (int i = 0 ; i < input.size(); i+=2) {
+		for (int i = 0 ; i < (input.size()/2) * 2; i+=2) {
 			String temp1 = input.get(i);
 			String temp2 = input.get(i + 1);
 			input.remove(i);
@@ -136,11 +136,6 @@ public class ArrayListPracticeLab
 		myList.add("it");
 		printMe(myList);
 		
-		
-		
-		
-		
-		
 
 		// To test your maxLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your maxLength method.  (You'll want to complete the convertArrayToList method first.)
@@ -182,8 +177,9 @@ public class ArrayListPracticeLab
 		String[] test_rem_1 = {"This", "is", "a", "test"};
 		String[] test_rem_2 = {"Did", "you", "solve", "it", "or", "what?"};
 		String[] test_rem_3 = {};
-				
-		
+		printMe(removeEvenLength(convertArrayToList(test_rem_1)));
+		printMe(removeEvenLength(convertArrayToList(test_rem_2)));
+		printMe(removeEvenLength(convertArrayToList(test_rem_3)));
 		
 		
 		// To test your doubleList method, convert the following to ArrayLists of Strings and 
@@ -195,6 +191,9 @@ public class ArrayListPracticeLab
 		String[] test_doub_1 = {"how", "are", "you?"};
 		String[] test_doub_2 = {"One string only"};		
 		String[] test_doub_3 = {};		
+		doubleList(convertArrayToList(test_doub_1));
+		doubleList(convertArrayToList(test_doub_2));
+		doubleList(convertArrayToList(test_doub_3));
 		
 	}
 		
