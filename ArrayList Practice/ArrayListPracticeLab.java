@@ -1,3 +1,8 @@
+//Nicholas Lee
+//APCS 3
+//DEC 11 2019
+//ArrayListPracticeLab, where we practice with ArrayLists.
+
 import java.util.ArrayList;
 
 import javax.xml.soap.Text;
@@ -143,7 +148,7 @@ public class ArrayListPracticeLab
 		String[] test_max_1 = {"to", "be", "or", "not", "to", "be", "hamlet"};  
 		String[] test_max_2 = {"Only one really long string"};
 		String[] test_max_3 = {};
-		System.out.println(maxLength(convertArrayToList(test_max_1)));
+		System.out.println(maxLength(convertArrayToList(test_max_1))); //printMe returns an int so I used sysout.
 		System.out.println(maxLength(convertArrayToList(test_max_2)));
 		System.out.println(maxLength(convertArrayToList(test_max_3)));
 		

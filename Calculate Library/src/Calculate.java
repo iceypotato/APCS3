@@ -162,11 +162,11 @@ public class Calculate {
 		else if (power == 0) {
 			return 1;
 		}
-		if (base <= 0) {
+		if (base < 0) {
 			return -1;
 		}
 		double factor = base;
-		for (int a = 1; a < power; a++) {
+		for (int a = 0; a < power-1; a++) {
 			base *= factor;
 		}
 		return base;
