@@ -9,9 +9,17 @@ public class Quadratic {
 	}
 	
 	public static double round2(double num) {
+		boolean wasNegative = false;
+		if (num < 0) {
+			num *= -1;
+			wasNegative = true;
+		}
 		num = (num + 0.005) * 100;
 		num = (int) num;
 		num = num / 100;
+		if (wasNegative == true) {
+			return num * -1;	
+		}
 		return num;
 	}
 	
@@ -28,6 +36,9 @@ public class Quadratic {
 	public static String quadForm(double a, double b, double c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+			if (outputPos == -0.0) {
+				outputPos *= -1;
+			}
 			return "There is only one root/x-intercept: " + outputPos;
 		}
 		else if (discriminant(a, b, c) < 0) {

@@ -238,6 +238,9 @@ public class Calculate {
 	public static String quadForm(int a, int b, int c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+			if (outputPos == -0.0) {
+				outputPos *= -1;
+			}
 			return outputPos+""; //ONE REAL ROOT
 		}
 		else if (discriminant(a, b, c) < 0) {
@@ -245,12 +248,16 @@ public class Calculate {
 		}
 		double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
 		double outputNeg = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
+		
 		return outputNeg + " and " + outputPos;
 	}
 	
 	public static String quadForm(double a, double b, double c) {
 		if (discriminant(a, b, c) == 0) {
 			double outputPos = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+			if (outputPos == -0.0) {
+				outputPos *= -1;
+			}
 			return outputPos+""; //ONE REAL ROOT
 		}
 		else if (discriminant(a, b, c) < 0) {

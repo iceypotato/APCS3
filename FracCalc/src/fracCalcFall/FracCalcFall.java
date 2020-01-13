@@ -1,9 +1,19 @@
-package fracCalc;
+/*
+ * Nicholas Lee
+ * 12/19/2019
+ * 3rd
+ * 
+ * 
+ * This accepts an expression of fractions and evaluates it.
+ */
+
+
+package fracCalcFall;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class FracCalc3 {
+public class FracCalcFall {
 
 	public static void main(String[] args) {
 		// TODO: Read the input from the user and call produceAnswer with an equation
@@ -29,61 +39,65 @@ public class FracCalc3 {
 	// calculated
 	// e.g. return ==> "1_1/4"
 	public static String produceAnswer(String input) {
+		if (input.indexOf(" ") == -1) {
+			return "Invalid Syntax.";
+		}
 		String[] expression = input.split(" "); // 5_3/4 - -6_8/8 - 5_3/4
+		
 		String[] expressionParts = null;
 		int[] ans = new int[2];
 		int[] frac1 = new int[2];
 		int[] frac2 = new int[2];
 
 		// Putting things into place.
-		for (int p = 0 ; p < expression.length; p++) {
-			int i = 0;
-			int closeParenthesies = 0;
-			if (expression[p].indexOf("(") != -1) {
-				i = p+1;
-			}
-			else if (expression[p].indexOf(")") != -1) {
-				closeParenthesies = p;
-			}
-			while (i < expression.length) { //Loop scans for multiplication and addition
-				String[] newExpression = new String[expression.length - 2];
-				if (expression[i].equals("*") || expression[i].equals("/")) {
-					toImproperFrac(expression[i - 1], frac1);
-					toImproperFrac(expression[i + 1], frac2);
-					if (expression[i].equals("/")) {
-						ans[0] = frac1[0] * frac2[1];
-						ans[1] = frac1[1] * frac2[0];
-					} else if (expression[i].equals("*")) {
-						ans[0] = frac1[0] * frac2[0];
-						ans[1] = frac1[1] * frac2[1];
-					}
-					int tempAns1 = ans[0], tempAns2 = ans[1];
-					ans[0] /= gcf(tempAns1, tempAns2);
-					ans[1] /= gcf(tempAns1, tempAns2);
-					int j = 0;
-					for (int a = 0; a < expression.length; a++) {
-						if (a == i - 1) {
-							newExpression[j] = toMixedNum(ans[0], ans[1]);
-							a += 2;
-							j++;
-						} else {
-							newExpression[j] = expression[a];
-							j++;
-						}
-	
-					}
-					expression = newExpression;
+		for (int i = 1; i < expression.length; i += 0) { //Loop scans for multiplication and addition
+			String[] newExpression = new String[expression.length - 2];
+			if (expression[i].equals("*") || expression[i].equals("/")) {
+				toImproperFrac(expression[i - 1], frac1);
+				toImproperFrac(expression[i + 1], frac2);
+				if (frac1 == null || frac2 == null) {
+					return "Invalid Syntax. Missing a \"/\"";
 				}
-				else {
-					i += 2;
+				if (expression[i].equals("/")) {
+					ans[0] = frac1[0] * frac2[1];
+					ans[1] = frac1[1] * frac2[0];
+				} else if (expression[i].equals("*")) {
+					ans[0] = frac1[0] * frac2[0];
+					ans[1] = frac1[1] * frac2[1];
 				}
+				int tempAns1 = ans[0], tempAns2 = ans[1];
+				ans[0] /= gcf(tempAns1, tempAns2);
+				ans[1] /= gcf(tempAns1, tempAns2);
+				int j = 0;
+				for (int a = 0; a < expression.length; a++) {
+					if (a == i - 1) {
+						newExpression[j] = toMixedNum(ans[0], ans[1]);
+						a += 2;
+						j++;
+					} else {
+						newExpression[j] = expression[a];
+						j++;
+					}
+
+				}
+				expression = newExpression;
 			}
+			else if (expression[i].equals("+") || expression[i].equals("-")) {
+				i += 2;
+			}
+			else {
+				return "Invalid Operation.";
+			}
+
 		}
 		for (int i = 1; i < expression.length; i += 0) {
 			String[] newExpression = new String[expression.length - 2];
 			if (expression[i].equals("-") || expression[i].equals("+")) {
 				toImproperFrac(expression[i - 1], frac1);
 				toImproperFrac(expression[i + 1], frac2);
+				if (frac1 == null || frac2 == null) {
+					return "Invalid Syntax. Missing a \"/\"";
+				}
 				if (frac1[1] != frac2[1]) {
 					frac1[0] *= frac2[1];
 					frac2[0] *= frac1[1];
@@ -114,10 +128,12 @@ public class FracCalc3 {
 
 				}
 				expression = newExpression;
-				i = 1;
+			}
+			else if (expression[i].equals("*") || expression[i].equals("/")) {
+				i += 2;
 			}
 			else {
-				i += 2;
+				return "Invalid Operation.";
 			}
 		}
 		return expression[0];
@@ -134,7 +150,6 @@ public class FracCalc3 {
 			highestVal = b;
 		} else {
 			highestVal = a;
-			System.out.println("They are all equal.");
 		}
 		return highestVal;
 	}
@@ -146,7 +161,6 @@ public class FracCalc3 {
 		} else if (b < a) {
 			lowestVal = b;
 		} else {
-			System.out.println("The Values are equal.");
 			lowestVal = a;
 		}
 		return lowestVal;
@@ -169,7 +183,6 @@ public class FracCalc3 {
 		int minNumber = min(num1, num2);
 		if (minNumber < 0)
 			minNumber *= -1;
-		System.out.println(maxNumber + " " + minNumber);
 		for (int i = minNumber; i > 0; i--) {
 			boolean a = isDivisibleBy(maxNumber, i);
 			boolean b = isDivisibleBy(minNumber, i);
@@ -177,7 +190,6 @@ public class FracCalc3 {
 				return i;
 			}
 		}
-		System.out.println("The GCF is one.");
 		return 1;
 	}
 
@@ -187,13 +199,13 @@ public class FracCalc3 {
 		}
 		return num;
 	}
-
+	//1_1/2
 	public static int[] toImproperFrac(String mixNumRaw, int[] fractions) {
 		String[] mixedNum = new String[2];
 		String[] fractionPortion = new String[2];
 		if (mixNumRaw.indexOf("_") != -1) {
 			if (mixNumRaw.indexOf("/") == -1) {
-				// do nothing
+				return null;
 			} else {
 				mixedNum = mixNumRaw.split("_");
 				fractionPortion = mixedNum[1].split("/");
