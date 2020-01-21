@@ -211,8 +211,7 @@ public class FracCalcFall {
 				fractionPortion = mixedNum[1].split("/");
 				if (Integer.parseInt(mixedNum[0]) < 0)
 					fractionPortion[0] = "-" + fractionPortion[0];
-				fractions[0] = Integer.parseInt(mixedNum[0]) * Integer.parseInt(fractionPortion[1])
-						+ Integer.parseInt(fractionPortion[0]);
+				fractions[0] = Integer.parseInt(mixedNum[0]) * Integer.parseInt(fractionPortion[1]) + Integer.parseInt(fractionPortion[0]);
 				fractions[1] = Integer.parseInt(fractionPortion[1]);
 			}
 		}

@@ -7,6 +7,7 @@ public class AccessCalculate {
 		System.out.println("Factorial: " + Calculate.factorial(0));
 		System.out.println("sqrt Test: " + Calculate.sqrt(0));
 		System.out.println("quadForm Test: " + Calculate.quadForm(-2, 0, 8));
+		System.out.println("GCF: " + Calculate.gcf(0, 1));
 	}
 
 }
