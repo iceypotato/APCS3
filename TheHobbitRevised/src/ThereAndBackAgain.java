@@ -44,19 +44,26 @@ public class ThereAndBackAgain
 		// write createParty
 		// Call the createParty method and pass it party2 and the dwarfNames array.
 		// create party should add all the new dwarves to party2,
-		
+		createParty(party2, dwarfNames);
 		
 
 		// Write allTravel
 		// Finally, call the allTravel method passing it party2 and 100 (representing
 		// the 100 miles that party2 has traveled together.
+		allTravel(party2, 100);
 
 		// Make sure your code prints out the name and distances party2 has traveled.
 	}
 	public static void createParty(ArrayList<Traveler> party, String[] names) {
-		for (String string : names) {
-			ArrayList<Traveler>
-			party.add(string);
+		for (String eachName : names) {
+			Traveler traveler = new Traveler(eachName);
+			party.add(traveler);
+		}
+	}
+	public static void allTravel(ArrayList<Traveler> party, int miles) {
+		for (Traveler eachTraveler : party) {
+			eachTraveler.travel(miles);
+			System.out.println(eachTraveler.getName() + " has traveled " + eachTraveler.getDistanceTraveled() + " miles!");
 		}
 	}
 
