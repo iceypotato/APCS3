@@ -12,19 +12,33 @@ public class Wizard extends Traveler
 	
 	private String color;
 	
+<<<<<<< HEAD
 	public Wizard(String name, String color)
 	{
+=======
+	public Wizard(String name, String color) {
+>>>>>>> branch 'master' of https://github.com/iceypotato/APCS3.git
 		super(name);
 		this.color = color;
 	}
 	
+<<<<<<< HEAD
 	public void travel(int miles)
 	{
 		super.travel(miles * 3);
+=======
+	public void travel(int miles) {
+		super.travel(3 * miles);
+>>>>>>> branch 'master' of https://github.com/iceypotato/APCS3.git
 	}
 	
+<<<<<<< HEAD
 	public String getName()
 	{
 		return super.getName() + " the " + this.color;
+=======
+	public String getName() {
+		return super.getName() + " the " + color;
+>>>>>>> branch 'master' of https://github.com/iceypotato/APCS3.git
 	}
 }
