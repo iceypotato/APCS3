@@ -1,3 +1,9 @@
+/*
+ * Nicholas Lee
+ * 2/14/2020
+ * Hobbit assignment
+ */
+
 import java.util.ArrayList;
 
 public class ThereAndBackAgain 
